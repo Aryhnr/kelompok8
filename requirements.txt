@@ -1,5 +1,0 @@
-imbalanced_learn==0.12.3
-imblearn==0.0
-pandas==2.2.2
-scikit_learn==1.5.0
-streamlit_option_menu==0.3.6
