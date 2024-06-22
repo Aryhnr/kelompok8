@@ -9,28 +9,9 @@ from sklearn.metrics import classification_report, confusion_matrix, accuracy_sc
 from streamlit_option_menu import option_menu
 from collections import Counter
 
-# Function to convert age to months
-def convert_to_months(usia):
-    usia = usia.replace('\xa0', ' ')
-    parts = usia.split(' - ')
-    try:
-        tahun = int(parts[0].split(' ')[0])
-        bulan = int(parts[1].split(' ')[0])
-        hari = int(parts[2].split(' ')[0])
-        total_bulan = (tahun * 12) + bulan
-        return total_bulan
-    except (IndexError, ValueError):
-        return pd.NA
-
 data = pd.read_csv('data_gizi.csv', encoding='latin1')
 
-# Load the data
-def load_data():
-    df = data[['Usia Saat Ukur', 'Berat', 'Tinggi', 'BB/TB']]
-    df.loc[:, 'Usia Saat Ukur'] = df['Usia Saat Ukur'].apply(convert_to_months)
-    return df
-
-df = load_data()
+df = pd.read_csv('output_data.csv', encoding='latin1')
 # Preprocessing steps
 X = df.drop(columns=['BB/TB'])
 y = df['BB/TB']
